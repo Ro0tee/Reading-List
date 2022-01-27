@@ -21,8 +21,53 @@ TODO
 2. What sentences can be selected as evidences (which means no IR process for annotators): \
 	2.1.  all sentences from the introductory section *of the page* for the main entity and *of every linked entity* in those sentences\
 	2.2. all sentences from the introductory section *of any arbitrary pages* added by annotators\
-	2.3. the title of the page(not explicitly recorded)\
+	2.3. the title of the page(not explicitly recorded)
 ### Dataset split
 1. Each Wikipedia page used to generate claims occurs in exactly one set.
 2. Extra 19,998 examples for use as a test set for a shared task(i.e., reserved).
+
+## Follow 3-steps pipeline
+## Overview
+TODO
+### Contribution on claim verification
+#### LOREN: Logic-Regularized Reasoning for Interpretable Fact Verification
+Publication venue: AAAI 2022 \
+Paper: [paper](https://arxiv.org/pdf/2012.13577.pdf) \
+Code: [code](https://github.com/jiangjiechen/LOREN) \
+Main contribution lies on claim verification
+##### Intuition
+The veracity of a claim depends on the truthfulness of its composing phrases, e.g., subject, verb, object phrases.  
+The claim is valid if all phrases are supported by certain evidence sentences in Wikipedia. \
+All phrases should be supported if a claim is true, and a claim is refuted if there exists at least one false phrase. If the outcome of a claim is unverifiable, then there must be no refuted phrase and at least one phrase that should be verified as unverifiable.
+#### Methodology
+1. Claim Verification
+
+2. Phrase Verification
+	Extract claim phrases W<sub>c</sub> with a set of heuristic rules using a series of off-the-shelf tools provided by AllenNLP: named entities (NEs), verbs, adjective and noun phrases (APs and NPs).
+	
+3. Logical Constraints
+	
+	| Label | Constraint |
+	| ----- | ---------- |
+	| REF.| if at least one claim phrase is refuted by evidence|
+	| SUP.|if all claim phrases are supported|
+	|NEI|neither of the above but at least one phrase gets unknown outcome. |
+	
+	Note: *The checking rule for the REF judgment has priority over NEI in phrase level  as it is also possible for a phrase to be NEI in a refuted claim, but not vice versa.* \
+	Formal Def.	
+	
+	<img src="figs/LOREN_def1.png" alt="LOREN_def1" width="500" style="zoom:10%;" >
+	
+4. Latent model: \
+	4.1. Variational inference; \
+	4.2. Use an off-the-shelf and pre-trained NLI model as prior distribution p(z|x), whose parame-ters are fixed. The NLI model yields the distribution of *contradicted*, *neutral* and *entailment*, which correspond to REF, NEI and SUP to some extent.
+	
+5. Logical Knowledge Distillation \
+	5.1. Student model: <img src="https://render.githubusercontent.com/render/math?math=p_\theta(y|z,x)"> \
+	5.2. Teacher model: project variational distribution <img src="https://render.githubusercontent.com/render/math?math=p_\phi(y|z,x)"> into a subspace, denoted as <img src="https://render.githubusercontent.com/render/math?math=q_{\phi}^{T}(y|z,x)"> which is constrained by the logical rules, since y<sub>z</sub>  is the logical aggregation of z. \
+	5.3. Distillation Loss \
+	​		<img src="https://render.githubusercontent.com/render/math?math=\mathcal{L}_{\text {logic }}(\theta, \phi)=D_{\text {KL }}\left(p_{\theta}(\boldsymbol{y} \mid \boldsymbol{z}, x) \| q_{\phi}^{\mathrm{T}}\left(\boldsymbol{y}_{z} \mid \boldsymbol{y}, x\right)\right)">
+	
+5. 
+	
 
