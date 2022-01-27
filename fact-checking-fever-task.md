@@ -5,7 +5,7 @@ The first Fact Extraction and VERification (FEVER) shared task was proposed by [
 
 ## Dataset Statistics
 
-![Statistics of FEVER](figs/fever_statistics.png)
+<img src="figs/fever_statistics.png"  width="500" style="zoom:10%;" >
 
 ## Evaluation
 TODO
