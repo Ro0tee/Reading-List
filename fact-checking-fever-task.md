@@ -68,6 +68,30 @@ All phrases should be supported if a claim is true, and a claim is refuted if th
 	5.3. Distillation Loss \
 	​		<img src="https://render.githubusercontent.com/render/math?math=\mathcal{L}_{\text {logic }}(\theta, \phi)=D_{\text {KL }}\left(p_{\theta}(\boldsymbol{y} \mid \boldsymbol{z}, x) \| q_{\phi}^{\mathrm{T}}\left(\boldsymbol{y}_{z} \mid \boldsymbol{y}, x\right)\right)">
 	
-5. 
+6. Building Local Premises （To generate local premise for reasoning)
+	
+	  6.1. Probing Question Generation
+
+	​	build probing questions Q for **every claim phrase** respectively:
+
+  		1) cloze questions, e.g., [MASK] won the 2020 election.
+  		2) interrogative questions, e.g., Who won the 2020 election?
+
+​			6.2. Local Premise Construction\
+​			 The MRC model takes as an input Q and E and answers W<sub>E</sub>. \
+​			 Then replace the original phrase with the answer to get replaced claims as local premise to reason about the veracity of every claim phrase.\
+​			 MRC model is trained in the self-supervised fashion and the MRC dataset is built with only SUP samples as REF or NEI samples are untrustworthy.
+
+7. Veracity Prediction\
+		Concatenate claim and each local premise, and then encode them into local vector with PLM;\
+		Concatenate claim and each evidence sentence, and then encode them into global vector with PLM, followed by a self-selecting module to find the important parts of a vector;\
+		A *culprit attention* based on a heuristic observation: a valid local premise should be semantically close to the evidence sentences:
+		<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{h}_{\mathrm{local}}=\tanh \left(\sum_{i=1}^{\left|\mathcal{W}_{c}\right|} \alpha_{i} \boldsymbol{h}_{\mathrm{local}}^{(i)}\right)"> , <img src="https://render.githubusercontent.com/render/math?math=\alpha_{i}=\sigma\left(\mathbf{W}_{\alpha}\left[\boldsymbol{h}_{\mathrm{global}}\oplus \boldsymbol{h}_{\mathrm{local}}^{(i)}\right]\right)"> 	\		
+		Then p<sub>θ</sub>(·)  and q<sub>φ</sub> both are two-layer MLPs:
+		<img src="figs/LOREN_pq.png" width="500";" />
+		Decoding: randomly initialize z, and then iteratively decode y and z with p<sub>θ</sub> (y|z, x) and q<sub>φ</sub>(z|y,x) until convergence
+#### Reflection
+	Is it really reasonable that using model A for prediction and model B to interpret model A?
+	The constraints seems oversimplified. Is a phrase alone or simple boolean operations enough for verifying claim in the real world?
 	
 
