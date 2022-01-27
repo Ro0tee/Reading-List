@@ -86,12 +86,15 @@ All phrases should be supported if a claim is true, and a claim is refuted if th
 		Concatenate claim and each local premise, and then encode them into local vector with PLM;\
 		Concatenate claim and each evidence sentence, and then encode them into global vector with PLM, followed by a self-selecting module to find the important parts of a vector;\
 		A *culprit attention* based on a heuristic observation: a valid local premise should be semantically close to the evidence sentences:
-		<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{h}_{\mathrm{local}}=\tanh \left(\sum_{i=1}^{\left|\mathcal{W}_{c}\right|} \alpha_{i} \boldsymbol{h}_{\mathrm{local}}^{(i)}\right)"> , <img src="https://render.githubusercontent.com/render/math?math=\alpha_{i}=\sigma\left(\mathbf{W}_{\alpha}\left[\boldsymbol{h}_{\mathrm{global}}\oplus \boldsymbol{h}_{\mathrm{local}}^{(i)}\right]\right)"> 	\		
-		Then p<sub>θ</sub>(·)  and q<sub>φ</sub> both are two-layer MLPs:
-		<img src="figs/LOREN_pq.png" width="500";" />
-		Decoding: randomly initialize z, and then iteratively decode y and z with p<sub>θ</sub> (y|z, x) and q<sub>φ</sub>(z|y,x) until convergence
+		<img src="https://render.githubusercontent.com/render/math?math=\boldsymbol{h}_{\mathrm{local}}=\tanh \left(\sum_{i=1}^{\left|\mathcal{W}_{c}\right|} \alpha_{i} \boldsymbol{h}_{\mathrm{local}}^{(i)}\right)"> , <img src="https://render.githubusercontent.com/render/math?math=\alpha_{i}=\sigma\left(\mathbf{W}_{\alpha}\left[\boldsymbol{h}_{\mathrm{global}}\oplus \boldsymbol{h}_{\mathrm{local}}^{(i)}\right]\right)"> 
+		
+	Then p<sub>θ</sub>(·)  and q<sub>φ</sub> both are two-layer MLPs:
+		
+	<img src="figs/LOREN_pq.png" width="500" >
+		
+	Decoding: randomly initialize z, and then iteratively decode y and z with p<sub>θ</sub> (y|z, x) and q<sub>φ</sub>(z|y,x) until convergence
 #### Reflection
-	Is it really reasonable that using model A for prediction and model B to interpret model A?
-	The constraints seems oversimplified. Is a phrase alone or simple boolean operations enough for verifying claim in the real world?
+Is it really reasonable that using model A for prediction and model B to interpret model A?
+The constraints seems oversimplified. Is a phrase alone or simple boolean operations enough for verifying claim in the real world?
 	
 
