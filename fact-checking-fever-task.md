@@ -94,7 +94,7 @@ All phrases should be supported if a claim is true, and a claim is refuted if th
 		
 	Decoding: randomly initialize z, and then iteratively decode y and z with p<sub>θ</sub> (y|z, x) and q<sub>φ</sub>(z|y,x) until convergence
 #### Reflection
-Is it really reasonable that using model A for prediction and model B to interpret model A?
+Is it really reasonable that using model A for prediction and model B to interpret model A?\
 The constraints seems oversimplified. Is a phrase alone or simple boolean operations enough for verifying claim in the real world?
 	
 
