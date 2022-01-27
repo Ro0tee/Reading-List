@@ -77,10 +77,10 @@ All phrases should be supported if a claim is true, and a claim is refuted if th
   		1) cloze questions, e.g., [MASK] won the 2020 election.
   		2) interrogative questions, e.g., Who won the 2020 election?
 
-​			6.2. Local Premise Construction\
-​			 The MRC model takes as an input Q and E and answers W<sub>E</sub>. \
-​			 Then replace the original phrase with the answer to get replaced claims as local premise to reason about the veracity of every claim phrase.\
-​			 MRC model is trained in the self-supervised fashion and the MRC dataset is built with only SUP samples as REF or NEI samples are untrustworthy.
+	6.2. Local Premise Construction\
+			The MRC model takes as an input Q and E and answers W<sub>E</sub>. \
+			 Then replace the original phrase with the answer to get replaced claims as local premise to reason about the veracity of every claim phrase.\
+			 MRC model is trained in the self-supervised fashion and the MRC dataset is built with only SUP samples as REF or NEI samples are untrustworthy.
 
 7. Veracity Prediction\
 		Concatenate claim and each local premise, and then encode them into local vector with PLM;\
