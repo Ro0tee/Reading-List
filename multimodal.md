@@ -6,5 +6,5 @@ Framework:
 
     <img src="figs/lxmert_framework.png"  width="800" style="zoom:20%;" >
     
-    Pre_train: \
+    Pre-training: \
     <img src="figs/lxmert_pretrain.png"  width="800" style="zoom:20%;" >
