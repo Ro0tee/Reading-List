@@ -102,8 +102,6 @@ Publication venue: NAACL 2021 \
 Paper: [paper](https://aclanthology.org/2021.naacl-demos.10.pdf) \
 Code: [code](https://github.com/algoprog/Quin) \
 ##### Intuition
-The veracity of a claim depends on the truthfulness of its composing phrases, e.g., subject, verb, object phrases.  
-The claim is valid if all phrases are supported by certain evidence sentences in Wikipedia. \
-All phrases should be supported if a claim is true, and a claim is refuted if there exists at least one false phrase. If the outcome of a claim is unverifiable, then there must be no refuted phrase and at least one phrase that should be verified as unverifiable.
+Expanding FEVER dataset with web search engine; Hybrid passage retrieval; Selection evidence sentences with embedding-based relevance score OR BIO tagging format sequence labeling model; Entailment classification with an NLI model based on RoBERTa-large, Inference: firstly retrieve relevant passages and then classify these passages into refuting/support, finally determine the label based on the number of refuting/support passages.
 #### Methodology
 <img src="figs/Quin+.png" width="500" >
