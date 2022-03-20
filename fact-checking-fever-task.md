@@ -100,7 +100,7 @@ The constraints seems oversimplified. Is a phrase alone or simple boolean operat
 #### Improving Evidence Retrieval for Automated Explainable Fact-Checking
 Publication venue: NAACL 2021 \
 Paper: [paper](https://aclanthology.org/2021.naacl-demos.10.pdf) \
-Code: [code](https://github.com/algoprog/Quin) \
+Code: [code](https://github.com/algoprog/Quin)
 ##### Intuition
 Expanding FEVER dataset with web search engine; Hybrid passage retrieval; Selection evidence sentences with embedding-based relevance score OR BIO tagging format sequence labeling model; Entailment classification with an NLI model based on RoBERTa-large, Inference: firstly retrieve relevant passages and then classify these passages into refuting/support, finally determine the label based on the number of refuting/support passages.
 #### Methodology
