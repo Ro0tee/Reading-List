@@ -97,4 +97,13 @@ All phrases should be supported if a claim is true, and a claim is refuted if th
 Is it really reasonable that using model A for prediction and model B to interpret model A?\
 The constraints seems oversimplified. Is a phrase alone or simple boolean operations enough for verifying claim in the real world?
 	
-
+#### Improving Evidence Retrieval for Automated Explainable Fact-Checking
+Publication venue: NAACL 2021 \
+Paper: [paper](https://aclanthology.org/2021.naacl-demos.10.pdf) \
+Code: [code](https://github.com/algoprog/Quin) \
+##### Intuition
+The veracity of a claim depends on the truthfulness of its composing phrases, e.g., subject, verb, object phrases.  
+The claim is valid if all phrases are supported by certain evidence sentences in Wikipedia. \
+All phrases should be supported if a claim is true, and a claim is refuted if there exists at least one false phrase. If the outcome of a claim is unverifiable, then there must be no refuted phrase and at least one phrase that should be verified as unverifiable.
+#### Methodology
+<img src="figs/Quin+.png" width="500" >
